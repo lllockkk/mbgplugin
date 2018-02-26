@@ -1,0 +1,58 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE generatorConfiguration
+    PUBLIC "-//mybatis.org//DTD MyBatis Generator Configuration 1.0//EN"
+    "http://mybatis.org/dtd/mybatis-generator-config_1_0.dtd">
+<!-- 在项目根目录下(pom.xml同级)打开命令行工具：mvn mybatis-generator:generate -->
+
+<generatorConfiguration>
+    <!--<classPathEntry-->
+    <!--location="C:\Users\Administrator\.m2\repository\mysql\mysql-connector-java\5.1.8\mysql-connector-java-5.1.8.jar"/>-->
+    <classPathEntry
+        location="D:/mvn-repo/mysql/mysql-connector-java/5.1.24/mysql-connector-java-5.1.24.jar"/>
+    <!--location="C:/Users/Administrator/.m2/repository/mysql/mysql-connector-java/5.1.24/mysql-connector-java-5.1.24.jar"/>-->
+
+
+
+    <!--location="C:\Users\Administrator\.m2\repository\mysql\mysql-connector-java\5.1.24\mysql-connector-java-5.1.24.jar"/>-->
+    <context id="baseTradeTables" targetRuntime="MyBatis3">
+        <property name="useActualColumnNames" value="false"/>
+
+        <plugin type="com.lllockkk.mbg.plugins.PrefixBaseColumnPlugin"/>
+
+        <!-- 数据库地址、用户名、密码 -->
+        <jdbcConnection driverClass="com.mysql.jdbc.Driver"
+                        connectionURL="jdbc:mysql://115.231.99.11:3306/jikon" userId="jikon"
+                        password="gaoxin@123456">
+        </jdbcConnection>
+
+        <javaTypeResolver>
+            <property name="forceBigDecimals" value="false"/>
+        </javaTypeResolver>
+
+        <!-- 后台生成 -->
+        <!-- model -->
+        <javaModelGenerator targetPackage="cn.jikon.warehouseManager.domain.entity"
+                            targetProject="src/main/java">
+            <property name="enableSubPackages" value="true"/>
+            <property name="trimStrings" value="true"/>
+        </javaModelGenerator>
+
+        <!-- Mapper映射 -->
+        <sqlMapGenerator targetPackage="mapper.warehouseManager"
+                         targetProject="src/main/resources">
+            <property name="enableSubPackages" value="true"/>
+        </sqlMapGenerator>
+
+        <!-- Mapper接口 -->
+        <javaClientGenerator type="XMLMAPPER"
+                             targetPackage="cn.jikon.warehouseManager.domain.mapper" targetProject="src/main/java">
+            <property name="enableSubPackages" value="true"/>
+        </javaClientGenerator>
+
+        <table tableName="wm_end_product" domainObjectName="WMEndProduct"
+               enableUpdateByExample="false" enableDeleteByExample="false">
+            <generatedKey column="id" sqlStatement="MySql" identity="true"/>
+        </table>
+    </context>
+
+</generatorConfiguration>
